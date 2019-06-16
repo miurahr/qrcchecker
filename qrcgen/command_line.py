@@ -27,8 +27,8 @@ def main():
     parser.add_argument('directory', nargs='+', metavar='directory',
                         type=lambda x: is_valid_dir(parser, x),
                         help='A valid dir, full or relative.')
-    parser.add_argument('-e','--exclude', action='append',metavar='exclude', type=str,
-                        help='Pattern(s) to exclude' )
+    parser.add_argument('-e', '--exclude', action='append', metavar='exclude', type=str,
+                        help='Pattern(s) to exclude')
     parser.add_argument('-o', '--output', help='output qrc filename')
 
     args = parser.parse_args()
@@ -47,5 +47,5 @@ def main():
     return 0
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     exit(main())
