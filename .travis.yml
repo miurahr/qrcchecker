@@ -1,0 +1,31 @@
+language: python
+matorix:
+  include:
+  - python: 3.5
+  - python: 3.6
+
+
+install:
+  - pip install -r requirements.txt
+  - pip install tox-travis
+
+script:
+  - tox
+
+after_success:
+  - coveralls
+  - python setup.py sdist bdist_wheel
+
+deploy:
+  - provider: pypi
+    user: miurahr
+    password: PASSWORD-SECRET
+    file_glob: true
+    file:
+      - dist/*.whl
+      - dist/*.gz
+    skip_cleanup: true
+    skip_existing: true
+    on:
+      repo: miurahr/qrcgen
+      tags: true

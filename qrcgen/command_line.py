@@ -15,7 +15,7 @@ def is_valid_dir(parser, arg):
     check if the path entered is a valid directory
     """
     if not os.path.isdir(arg):
-        parser.error("%s is not a valid directory"%arg)
+        parser.error("%s is not a valid directory" % arg)
     return arg
 
 
