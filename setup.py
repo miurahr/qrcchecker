@@ -4,7 +4,7 @@ import re
 from setuptools import setup
 
 
-package_name = "qrcgen"
+package_name = "qrcchecker"
 
 root_dir = os.path.abspath(os.path.dirname(__file__))
 
