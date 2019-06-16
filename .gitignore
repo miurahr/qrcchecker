@@ -2,4 +2,7 @@ build
 dist
 venv
 *.egg-info
+.coverage
 .idea
+.tox
+__pycache__
