@@ -10,13 +10,26 @@ import bisect
 import fnmatch
 import os
 import re
+import xml.etree.ElementTree as ET
 
 
 class Resources():
 
-    def __init__(self, prefix):
+    def __init__(self, qrcfile, prefix=None, create=False):
         self.prefix = prefix
         self.resources = []
+        if not os.path.exists(qrcfile) and create:
+            self.qrcfile = open(qrcfile, 'w')
+        elif os.path.exists(qrcfile):
+            self.qrcfile = open(qrcfile, 'w')
+        else:
+            raise FileNotFoundError
+
+    def load(self):
+        etree = ET.parse(self.qrcfile)
+        root = etree.getroot()
+        for res in root.iter('file'):
+            self.resources.append(res.text)
 
     def scan(self, directories, exclude_pattern):
         """
@@ -37,12 +50,11 @@ class Resources():
                         e = os.path.relpath(p)
                         bisect.insort(self.resources, e)
 
-    def write(self, qrcfile):
+    def write(self):
         """
         Write to the qrc file under the prefix specified
         """
-        with open(qrcfile, 'w') as f:
-            f.write('<RCC>\n    <qresource prefix="%s">\n' % self.prefix)
-            for r in self.resources:
-                f.write('        <file>%s</file>\n' % r)
-            f.write('    </qresource>\n</RCC>\n')
+        self.qrcfile.write('<RCC>\n    <qresource prefix="%s">\n' % self.prefix)
+        for r in self.resources:
+            self.qrcfile.write('        <file>%s</file>\n' % r)
+        self.qrcfile.write('    </qresource>\n</RCC>\n')

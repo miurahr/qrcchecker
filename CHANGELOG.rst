@@ -17,6 +17,8 @@ Added
 Changed
 -------
 
+* reblanding the project named qrcchecker
+
 Fixed
 -----
 
@@ -30,5 +32,5 @@ Security
 --------
 
 
-.. _Unreleased: https://github.com/miurahr/qrcgen/compare/v0.3...HEAD
-.. _v0.3: https://github.com/miurahr/qrcgen/compare/v0.2...v0.3
+.. _Unreleased: https://github.com/miurahr/qrcchecker/compare/v0.3...HEAD
+.. _v0.3: https://github.com/miurahr/qrcchecker/compare/v0.2...v0.3

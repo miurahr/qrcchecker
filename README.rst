@@ -1,6 +1,6 @@
-==============================
-qrcgen - Qt QRC file generator
-==============================
+=================================
+qrc-checker - Qt QRC file checker
+=================================
 
 
 .. image:: https://travis-ci.org/miurahr/qrcgen.svg?branch=master
@@ -23,11 +23,11 @@ Usage
 
 .. code-block::
 
-    qrcgen.py [-h] [-o qrcfilename] [-e exclude [-e exclude]...] prefix directory [directory [directory] ...]
+    qrcchecker [-h][-c][-u][-e exclude [-e exclude]...] qrcfilename directory [directory [directory] ...]
 
 
-prefix
-    The prefix in the qrc file under which the resources will be available.
+qrcfilename
+    qrc filename to check.
 
 directory
     A valid path, full or local. Can specify multiple directories.
@@ -35,21 +35,19 @@ directory
 
 This script take following options.
 
--o,--output    specify output qrc filename.
-    If output option is not specified, a `<directory>.qrc` file or `resources.qrc` in the current directory
-    will be generated when multiple directories are specified.
-    File entries in generated qrc file are sorted in ascendent order.
-
 -e,--exclude   specify patterns to exclude from qrc listing.
 
--h,--help  show this help message and exit
+-c,--create    create qrc file if not exist(Default: False).
+
+-u,--update    update qrc file with suggested items(implies --create, Default: False).
+
+-h,--help      show this help message and exit
 
 
 License
 =======
 
-
-Autogenerating a qrc file from the full contents of a directory tree
+Check a qrc file with a directory tree.
 
 Copyright 2019 (C) Hiroshi Miura
 
