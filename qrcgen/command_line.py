@@ -7,7 +7,7 @@ licese: GPL v3
 import argparse
 import os
 
-from qrcgen.qrcgen import QrcFile
+from qrcgen.qrcgen import Resources
 
 
 def is_valid_dir(parser, arg):
@@ -35,16 +35,20 @@ def main():
     prefix = args.prefix or '/'
     directories = args.directory
     excludes = args.exclude
-    if args.output is not None:
-        resfile = args.output
-    elif len(directories) == 1:
-        resfile = os.path.split(directories[0])[-1] + '.qrc'
+    qrc_filename = args.output
+    if qrc_filename is None:
+        if len(directories) == 1:
+            qrc_filename = os.path.split(directories[0])[-1] + '.qrc'
+        else:
+            qrc_filename = 'resources.qrc'
+    try:
+        qt_resources = Resources(prefix).scan(directories, excludes)
+        qt_resources.write(qrc_filename)
+    except OSError as e:
+        print("Error occured: {}".format(e.message))
+        return(1)
     else:
-        resfile = 'resources.qrc'
-    qrcfile = QrcFile(prefix)
-    qrcfile.scan(directories, excludes)
-    qrcfile.write(resfile)
-    return 0
+        return(0)
 
 
 if __name__ == "__main__":

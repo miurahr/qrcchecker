@@ -12,7 +12,7 @@ import os
 import re
 
 
-class QrcFile():
+class Resources():
 
     def __init__(self, prefix):
         self.prefix = prefix
@@ -22,14 +22,20 @@ class QrcFile():
         """
         Scan tree starting from directories and generate sorted resources
         """
-        excludes = exclude_pattern or ['.+[.]cpp', '.+[.]hpp', '.+[.]c', '.+[.]h', '[.].+']
+        if not isinstance(directories, list):
+            raise TypeError
+        if exclude_pattern is not None:
+            if not isinstance(exclude_pattern, list):
+                raise TypeError
+        excludes = exclude_pattern or ['*.cpp', '*.hpp', '*.c', '*.h']
         excludes = r'|'.join([fnmatch.translate(x) for x in excludes]) or r'$.'
         for direc in directories:
             for path, dirs, files in os.walk(direc):
-                files = [os.path.join(path, f) for f in files]
-                for f in files:
-                    if not re.match(excludes, f):
-                        bisect.insort(self.resources, f)
+                files = [(os.path.join(path, f), f) for f in files]
+                for p, f in files:
+                    if not re.match(excludes, p) and not re.match(excludes, f):
+                        e = os.path.relpath(p)
+                        bisect.insort(self.resources, e)
 
     def write(self, qrcfile):
         """
