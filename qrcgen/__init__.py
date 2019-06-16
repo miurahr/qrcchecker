@@ -1,0 +1,6 @@
+__copyright__ = 'Copyright (C) 2011 Flavio Codeco Coelho\nCopyright (C) 2019 Hiroshi Miura'
+__version__ = '0.2'
+__license__ = 'GPLv3'
+__author__ = 'Hiroshi Miura'
+__author_email__ = 'miurahr@linux.com'
+__url__ = 'http://github.com/miurahr/qrcgen'
