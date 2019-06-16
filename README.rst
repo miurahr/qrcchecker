@@ -14,7 +14,7 @@ Usage
 
 .. code-block::
 
-    qrcgen.py [-h] [-o qrcfilename] prefix directory [directory ...]
+    qrcgen.py [-h] [-o qrcfilename] [-e exclude [-e exclude]...] prefix directory [directory [directory] ...]
 
 
 prefix
@@ -30,6 +30,8 @@ This script take following options.
     If output option is not specified, a `<directory>.qrc` file or `resources.qrc` in the current directory
     will be generated when multiple directories are specified.
     File entries in generated qrc file are sorted in ascendent order.
+
+-e,--exclude   specify patterns to exclude from qrc listing.
 
 -h,--help  show this help message and exit
 
