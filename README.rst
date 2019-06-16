@@ -2,7 +2,16 @@
 qrcgen - Qt QRC file generator
 ==============================
 
+
+.. image:: https://travis-ci.org/miurahr/qrcgen.svg?branch=master
+   :target: https://travis-ci.org/miurahr/qrcgen
+
+.. image:: https://coveralls.io/repos/github/miurahr/qrcgen/badge.svg
+   :target: https://coveralls.io/github/miurahr/qrcgen
+
+
 This Script generates a qrc file (Qt Resource file) for the entire contents of a directory tree.
+
 
 :Authors: Hiroshi Miura, Flavio Codeco Coelho
 :Version: 0.3
