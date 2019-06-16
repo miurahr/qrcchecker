@@ -7,7 +7,7 @@ licese: GPL v3
 import argparse
 import os
 
-import qrcgen
+from qrcgen.qrcgen import QrcFile
 
 
 def is_valid_dir(parser, arg):
@@ -38,10 +38,10 @@ def main():
     if args.output is not None:
         resfile = args.output
     elif len(directories) == 1:
-        resfile = os.path.split(directories[0])[-1]
+        resfile = os.path.split(directories[0])[-1] + '.qrc'
     else:
         resfile = 'resources.qrc'
-    qrcfile = qrcgen.QrcFile(prefix)
+    qrcfile = QrcFile(prefix)
     qrcfile.scan(directories, excludes)
     qrcfile.write(resfile)
     return 0
